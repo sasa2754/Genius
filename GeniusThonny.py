@@ -21,38 +21,6 @@ listaAleatoria = []
 listaJogador = []
 erro = False
 
-#Credenciais do WIFI
-nome = "" #Coloque o nome da rede
-senha = "" #Coloque a senha da rede
-
-# Endereço do firebase
-FIREBASE_URL = "https://iiot-7276b-default-rtdb.firebaseio.com/"
-SECRET_KEY = ""
-
-def conectarWifi():
-    wlan = network.WLAN(network.STA_IF)
-    wlan.active(True)
-    if not wlan.isconnected():
-        print("Conectando no WiFi...")
-        wlan.connect(nome, senha)
-        while not wlan.isconnected():
-            pass
-    print("Wifi conectado... IP: {}".format(wlan.ifconfig()[0]))
-
-def enviarFire(data):
-    headers = {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + SECRET_KEY
-    }
-    url = FIREBASE_URL + "Sabrina.json"  
-
-    response = urequests.put(url, data=ujson.dumps(data), headers=headers)
-    print("Firebase Response:", response.text)
-    response.close()
-
-
-conectarWifi()
-
 def acenderLed(ledCor):
     ledCor.value(1)
 
@@ -186,12 +154,6 @@ def jogoPrincipal():
             break
         else:
             i+=1
-            
-        informacao = {
-            "Pontuação": i,
-        }
-
-        enviarFire(informacao)
 
 
 jogoPrincipal()
