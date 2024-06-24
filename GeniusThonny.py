@@ -22,8 +22,8 @@ listaJogador = []
 erro = False
 
 #Credenciais do WIFI
-nome = "Celofone da Sasá"
-senha = "sasa12345"
+nome = "" #Coloque o nome da rede
+senha = "" #Coloque a senha da rede
 
 # Endereço do firebase
 FIREBASE_URL = "https://iiot-7276b-default-rtdb.firebaseio.com/"
@@ -44,7 +44,7 @@ def enviarFire(data):
         "Content-Type": "application/json",
         "Authorization": "Bearer " + SECRET_KEY
     }
-    url = FIREBASE_URL + "Sabrina.json"  # Coloque o seu nome
+    url = FIREBASE_URL + "Sabrina.json"  
 
     response = urequests.put(url, data=ujson.dumps(data), headers=headers)
     print("Firebase Response:", response.text)
