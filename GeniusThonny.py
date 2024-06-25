@@ -27,7 +27,7 @@ def play_tone(freq, duration_ms):
     buzzer.duty(50)    # Define o ciclo de trabalho (50% para som contínuo)
     time.sleep_ms(duration_ms)
     buzzer.duty(0)     # Para o som
-    
+
 def acenderLed(ledCor):
     ledCor.value(1)
 
@@ -148,37 +148,17 @@ def jogadaJogador(qtd):
         
 
 def musicaComeco():
-    play_tone(100, 100)
-    play_tone(140, 100)
-    play_tone(120, 100)
-    play_tone(160, 100)
-    play_tone(140, 100)
-    play_tone(180, 100)
-    play_tone(160, 100)
-    play_tone(200, 100)
-    play_tone(180, 100)
-    play_tone(220, 100)
-    play_tone(200, 100)
-    play_tone(240, 100)
-    play_tone(220, 100)
-    play_tone(260, 100)
-    play_tone(240, 100)
-    play_tone(280, 100)
-    play_tone(260, 100)
-    play_tone(300, 100)
-    play_tone(280, 100)
-    play_tone(320, 100)
-    play_tone(300, 100)
-    play_tone(340, 100)
-    play_tone(320, 100)
-    play_tone(360, 100)
-    play_tone(340, 100)
-    play_tone(380, 100)
-    play_tone(360, 100)
-    play_tone(400, 100)
-    play_tone(450, 500)
-    time.sleep(0.5)
-    play_tone(100, 600)
+    play_tone(392, 300)  # G4
+    play_tone(440, 300)  # A4
+    play_tone(392, 300)  # G4
+    play_tone(523, 500)  # C5
+    
+    time.sleep(0.3)  # Pausa curta
+    
+    play_tone(494, 300)  # B4
+    play_tone(392, 300)  # G4
+    play_tone(440, 300)  # A4
+    play_tone(523, 500)  # C5
     
 def musicaFinal():
     play_tone(450, 500)
@@ -232,4 +212,5 @@ def jogoPrincipal():
 
 
 jogoPrincipal()
+
 
