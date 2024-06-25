@@ -15,11 +15,18 @@ buttonVermelho = Pin(32, Pin.IN)
 buttonAzul = Pin(35, Pin.IN)
 buttonVerde = Pin(34, Pin.IN)
 
-buzzer = Pin(25, Pin.OUT)
+buzzer = PWM(Pin(25, Pin.OUT))
 
 listaAleatoria = []
 listaJogador = []
 erro = False
+
+def play_tone(freq, duration_ms):
+    buzzer.freq(freq)  # Define a frequência em Hz
+    buzzer.duty(50)    # Define o ciclo de trabalho (50% para som contínuo)
+    time.sleep_ms(duration_ms)
+    buzzer.duty(0)     # Para o som
+
 
 def acenderLed(ledCor):
     ledCor.value(1)
@@ -39,21 +46,25 @@ def coresJogo():
         if listaAleatoria[i] == 1:
             time.sleep(0.3)
             acenderLed(ledAmarelo)
+            play_tone(400, 500)
             time.sleep(0.3)
             apagarLed(ledAmarelo)
         elif listaAleatoria[i] == 2:
             time.sleep(0.3)
             acenderLed(ledVermelho)
+            play_tone(300, 500)
             time.sleep(0.3)
             apagarLed(ledVermelho)
         elif listaAleatoria[i] == 3:
             time.sleep(0.3)
             acenderLed(ledAzul)
+            play_tone(250, 500)
             time.sleep(0.3)
             apagarLed(ledAzul)
         elif listaAleatoria[i] == 4:
             time.sleep(0.3)
             acenderLed(ledVerde)
+            play_tone(150, 500)
             time.sleep(0.3)
             apagarLed(ledVerde)
         time.sleep(0.2)
@@ -63,6 +74,7 @@ def coresJogo():
     if corLed == 1:
         time.sleep(0.3)
         acenderLed(ledAmarelo)
+        play_tone(400, 500)
         listaAleatoria.append(1)
         time.sleep(0.3)
         apagarLed(ledAmarelo)
@@ -70,6 +82,7 @@ def coresJogo():
     elif corLed == 2:
         time.sleep(0.3)
         acenderLed(ledVermelho)
+        play_tone(300, 500)
         listaAleatoria.append(2)
         time.sleep(0.3)
         apagarLed(ledAmarelo)
@@ -77,6 +90,7 @@ def coresJogo():
     elif corLed == 3:
         time.sleep(0.3)
         acenderLed(ledAzul)
+        play_tone(250, 500)
         listaAleatoria.append(3)
         time.sleep(0.3)
         apagarLed(ledAmarelo)
@@ -84,6 +98,7 @@ def coresJogo():
     elif corLed == 4:
         time.sleep(0.3)
         acenderLed(ledVerde)
+        play_tone(150, 500)
         listaAleatoria.append(4)
         time.sleep(0.3)
         apagarLed(ledAmarelo)
@@ -104,24 +119,28 @@ def jogadaJogador(qtd):
         
         if buttonAmareloValue == 1:
             acenderLed(ledAmarelo)
+            play_tone(400, 500)
             listaJogador.append(1)
             conferirSequencia(i)
             i+=1
             
         elif buttonVermelhoValue == 1:
             acenderLed(ledVermelho)
+            play_tone(300, 500)
             listaJogador.append(2)
             conferirSequencia(i)
             i+=1
             
         elif buttonAzulValue == 1:
             acenderLed(ledAzul)
+            play_tone(250, 500)
             listaJogador.append(3)
             conferirSequencia(i)
             i+=1
             
         elif buttonVerdeValue == 1:
             acenderLed(ledVerde)
+            play_tone(150, 500)
             listaJogador.append(4)
             conferirSequencia(i)
             i+=1
@@ -147,9 +166,9 @@ def jogoPrincipal():
         if erro:
             print("Erro!")
             for j in range(3):
-                buzzer.value(1)
+                play_tone(100, 500)
                 time.sleep(0.2)
-                buzzer.value(0)
+                play_tone(100, 500)
                 time.sleep(0.2)
             break
         else:
@@ -157,4 +176,5 @@ def jogoPrincipal():
 
 
 jogoPrincipal()
+
 
