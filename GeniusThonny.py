@@ -1,4 +1,4 @@
-from machine import Pin
+from machine import Pin, PWM
 import random
 import time
 import urequests
