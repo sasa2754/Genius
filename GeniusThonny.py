@@ -22,13 +22,6 @@ listaAleatoria = []
 listaJogador = []
 erro = False
 
-def play_tone(freq, duration_ms):
-    buzzer.freq(freq)  # Define a frequência em Hz
-    buzzer.duty(50)    # Define o ciclo de trabalho (50% para som contínuo)
-    time.sleep_ms(duration_ms)
-    buzzer.duty(0)     # Para o som
-
-
 def acenderLed(ledCor):
     ledCor.value(1)
 
@@ -103,7 +96,6 @@ def coresJogo():
         listaAleatoria.append(4)
         time.sleep(0.3)
         apagarLed(ledAmarelo)
-    time.sleep(0.5)
         
 def jogadaJogador(qtd):
     global listaJogador
@@ -146,36 +138,92 @@ def jogadaJogador(qtd):
             conferirSequencia(i)
             i+=1
             
-        time.sleep(0.3)
+        time.sleep(0.2)
         
 
-        
+def musicaComeco():
+    play_tone(100, 100)
+    play_tone(140, 100)
+    play_tone(120, 100)
+    play_tone(160, 100)
+    play_tone(140, 100)
+    play_tone(180, 100)
+    play_tone(160, 100)
+    play_tone(200, 100)
+    play_tone(180, 100)
+    play_tone(220, 100)
+    play_tone(200, 100)
+    play_tone(240, 100)
+    play_tone(220, 100)
+    play_tone(260, 100)
+    play_tone(240, 100)
+    play_tone(280, 100)
+    play_tone(260, 100)
+    play_tone(300, 100)
+    play_tone(280, 100)
+    play_tone(320, 100)
+    play_tone(300, 100)
+    play_tone(340, 100)
+    play_tone(320, 100)
+    play_tone(360, 100)
+    play_tone(340, 100)
+    play_tone(380, 100)
+    play_tone(360, 100)
+    play_tone(400, 100)
+    play_tone(450, 500)
+    time.sleep(0.5)
+    play_tone(100, 600)
+    
+def musicaFinal():
+    play_tone(450, 500)
+    play_tone(400, 100)
+    play_tone(380, 100)
+    play_tone(360, 100)
+    play_tone(340, 100)
+    play_tone(320, 100)
+    play_tone(300, 100)
+    play_tone(280, 100)
+    play_tone(260, 100)
+    play_tone(240, 100)
+    play_tone(220, 100)
+    play_tone(200, 100)
+    play_tone(180, 100)
+    play_tone(160, 100)
+    play_tone(140, 100)
+    play_tone(120, 100)
+    play_tone(140, 100)
+    play_tone(160, 100)
+    play_tone(120, 100)
+    play_tone(140, 100)
+    play_tone(100, 100)
+
+    
 def jogoPrincipal():
     global erro
     erro = False
     i = 0
-
+    
     buzzer.init()
+    musicaComeco()
     while not erro:
         print(f"Jogada {i}:")
         coresJogo()
         time.sleep(0.5)
         jogadaJogador(i)
         time.sleep(0.2)
-        time.sleep(1)
         apagarLed(ledAmarelo); apagarLed(ledVermelho); apagarLed(ledAzul); apagarLed(ledVerde)
         if erro:
             print("Erro!")
-            for j in range(3):
-                play_tone(100, 500)
-                time.sleep(0.2)
-                play_tone(100, 500)
-                time.sleep(0.2)
+            
+            play_tone(100, 500)
+            time.sleep(0.2)
+            musicaFinal()
+            time.sleep(0.3)
+            buzzer.deinit()
             break
         else:
             i+=1
 
 
 jogoPrincipal()
-
 
