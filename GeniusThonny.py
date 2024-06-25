@@ -16,6 +16,7 @@ buttonAzul = Pin(35, Pin.IN)
 buttonVerde = Pin(34, Pin.IN)
 
 buzzer = PWM(Pin(25, Pin.OUT))
+buzzer.deinit()
 
 listaAleatoria = []
 listaJogador = []
@@ -151,10 +152,10 @@ def jogadaJogador(qtd):
         
 def jogoPrincipal():
     global erro
-    buzzer.value(0)
     erro = False
     i = 0
-    
+
+    buzzer.init()
     while not erro:
         print(f"Jogada {i}:")
         coresJogo()
