@@ -22,6 +22,12 @@ listaAleatoria = []
 listaJogador = []
 erro = False
 
+def play_tone(freq, duration_ms):
+    buzzer.freq(freq)  # Define a frequência em Hz
+    buzzer.duty(50)    # Define o ciclo de trabalho (50% para som contínuo)
+    time.sleep_ms(duration_ms)
+    buzzer.duty(0)     # Para o som
+    
 def acenderLed(ledCor):
     ledCor.value(1)
 
